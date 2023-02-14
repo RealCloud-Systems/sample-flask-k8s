@@ -33,7 +33,7 @@ jobs:
 
       - name: update k8s
         run: |
-          cd k8s
+          cd kubernetes
           kustomize edit set image webapp=marcosportorc/webapp:${{ github.sha }}
           cat kustomization.yaml
       - name: commit
