@@ -34,7 +34,7 @@ jobs:
       - name: update k8s
         run: |
           cd kubernetes
-          kustomize edit set image webapp=marcosportorc/webapp:${{ github.sha }}
+          kustomize edit set image sample-flask-k8s=marcosportorc/webapp:${{ github.sha }}
           cat kustomization.yaml
       - name: commit
         run: |

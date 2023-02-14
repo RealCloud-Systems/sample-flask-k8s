@@ -7,6 +7,6 @@ resources:
 namespace: default
 
 images:
-- name: webapp
+- name: sample-flask-k8s
   newName: marcosportorc/webapp
   newTag: 1.0
