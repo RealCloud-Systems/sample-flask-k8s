@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sample-flask-k8s
+  name: sample-flask-k8s
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-flask-k8s
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sample-flask-k8s
+    spec:
+      nodeSelector:
+        app: sample-flask-k8s
+      tolerations:
+      - key: "app"
+        operator: "Equal"
+        value: "sample-flask-k8s"
+        effect: "NoSchedule"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - sample-flask-k8s
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - image: marcosportorc/webapp:1.0
+        name: sample-flask-k8s
+        ports:
+        - containerPort: 5000
+
+
