@@ -35,7 +35,7 @@ spec:
                 - sample-flask-k8s
             topologyKey: "kubernetes.io/hostname"
       containers:
-      - image: marcosportorc/webapp:1.0
+      - image: sample-flask-k8s
         name: sample-flask-k8s
         ports:
         - containerPort: 5000
