@@ -16,24 +16,7 @@ spec:
       creationTimestamp: null
       labels:
         app: sample-flask-k8s
-    # spec:
-    #   nodeSelector:
-    #     app: sample-flask-k8s
-    #   tolerations:
-    #   - key: "app"
-    #     operator: "Equal"
-    #     value: "sample-flask-k8s"
-    #     effect: "NoSchedule"
-    #   affinity:
-    #     podAntiAffinity:
-    #       requiredDuringSchedulingIgnoredDuringExecution:
-    #       - labelSelector:
-    #           matchExpressions:
-    #           - key: app
-    #             operator: In
-    #             values:
-    #             - sample-flask-k8s
-    #         topologyKey: "kubernetes.io/hostname"
+    spec:
       containers:
       - image: sample-flask-k8s
         name: sample-flask-k8s
