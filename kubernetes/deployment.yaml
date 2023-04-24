@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: sample-flask-k8s
   name: sample-flask-k8s
@@ -10,17 +9,34 @@ spec:
   selector:
     matchLabels:
       app: sample-flask-k8s
-  strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
         app: sample-flask-k8s
     spec:
+      affinity:
+        podAffinity:
+          maxUnavailable: 2
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - my-app
+            topologyKey: kubernetes.io/hostname
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - my-app
+            topologyKey: kubernetes.io/hostname
       containers:
       - image: sample-flask-k8s
         name: sample-flask-k8s
         ports:
         - containerPort: 5000
-
-
