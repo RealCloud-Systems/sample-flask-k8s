@@ -16,7 +16,7 @@ spec:
         app: sample-flask-k8s
     spec:
       containers:
-      - image: marcosportorc/webapp:030f582a3b8d56d71eb01b585961506214f7dd37
+      - image: sample-flask-k8s
         name: sample-flask-k8s
         ports:
         - containerPort: 5000
