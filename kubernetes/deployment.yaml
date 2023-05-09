@@ -15,28 +15,8 @@ spec:
       labels:
         app: sample-flask-k8s
     spec:
-      affinity:
-        podAffinity:
-          maxUnavailable: 2
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - my-app
-            topologyKey: kubernetes.io/hostname
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - my-app
-            topologyKey: kubernetes.io/hostname
       containers:
-      - image: sample-flask-k8s
+      - image: marcosportorc/webapp:030f582a3b8d56d71eb01b585961506214f7dd37
         name: sample-flask-k8s
         ports:
         - containerPort: 5000
