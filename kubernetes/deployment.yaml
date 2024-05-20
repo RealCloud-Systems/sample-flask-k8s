@@ -20,3 +20,10 @@ spec:
         name: sample-flask-k8s
         ports:
         - containerPort: 5000
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "2000m"
+          limits:
+            memory: "250Mi"
+            cpu: "2500m"
