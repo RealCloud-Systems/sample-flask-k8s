@@ -9,4 +9,4 @@ namespace: default
 images:
 - name: sample-flask-k8s
   newName: marcosportorc/webapp
-  newTag: 030f582a3b8d56d71eb01b585961506214f7dd37
+  newTag: 739d375e0ed0ae4d921d0b56c500b220e22d1b1e
