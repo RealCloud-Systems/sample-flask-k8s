@@ -28,8 +28,6 @@ jobs:
 
       - name: kustomize
         uses: imranismail/setup-kustomize@v2
-        with:
-          kustomize-version: v5.4.1
 
       - name: update k8s
         run: |
@@ -40,6 +38,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Deploy Action"
-          git commit -am "some description"
+          git commit -am "Kustomize Updating Image"
       - name: push
         uses: ad-m/github-push-action@master
