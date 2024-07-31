@@ -6,6 +6,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -17,10 +18,14 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: marcosportorc/webapp
           tags: ${{ github.sha }}, 1.0
+      - name: get image sha
+        id: get_image_sha
+        run: echo "::set-output name=sha::$(docker inspect --format='{{index .RepoDigests 0}}' marcosportorc/webapp | cut -d'@' -f2)"
+      
       - name: Integrate with Upwind
         env:
           IMAGE: webapp
-          IMAGE_SHA: ${{ github.sha }}
+          IMAGE_SHA: step.get_image_sha.outputs.sha
           UPWIND_API_ENDPOINT: https://api.upwind.io
           UPWIND_AUTH_ENDPOINT: https://auth.upwind.io
           UPWIND_ORGANIZATION_ID: ${{ secrets.UPWIND_ORGANIZATION_ID }}
