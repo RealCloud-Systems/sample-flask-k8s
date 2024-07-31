@@ -18,22 +18,22 @@ jobs:
           repository: marcosportorc/webapp
           tags: ${{ github.sha }}, 1.0
       - name: Integrate with Upwind
-      env:
-        IMAGE: webapp
-        IMAGE_SHA: ${{ github.sha }}
-        UPWIND_API_ENDPOINT: https://api.upwind.io
-        UPWIND_AUTH_ENDPOINT: https://auth.upwind.io
-        UPWIND_ORGANIZATION_ID: ${{ secrets.UPWIND_ORGANIZATION_ID }}
-        UPWIND_CLIENT_SECRET: ${{ secrets.UPWIND_CLIENT_SECRET }}
-        UPWIND_CLIENT_ID: ${{ secrets.UPWIND_CLIENT_ID }}
+        env:
+          IMAGE: webapp
+          IMAGE_SHA: ${{ github.sha }}
+          UPWIND_API_ENDPOINT: https://api.upwind.io
+          UPWIND_AUTH_ENDPOINT: https://auth.upwind.io
+          UPWIND_ORGANIZATION_ID: ${{ secrets.UPWIND_ORGANIZATION_ID }}
+          UPWIND_CLIENT_SECRET: ${{ secrets.UPWIND_CLIENT_SECRET }}
+          UPWIND_CLIENT_ID: ${{ secrets.UPWIND_CLIENT_ID }}
         run: |
         # Get Access Token
           response=$(curl -s --location "${UPWIND_AUTH_ENDPOINT}/oauth/token" \
-          --header "Content-Type: application/x-www-form-urlencoded" \
-          --data-urlencode "grant_type=client_credentials" \
-          --data-urlencode "audience=${UPWIND_API_ENDPOINT}" \
-          --data-urlencode "client_id=${UPWIND_CLIENT_ID}" \
-          --data-urlencode "client_secret=${UPWIND_CLIENT_SECRET}")
+            --header "Content-Type: application/x-www-form-urlencoded" \
+            --data-urlencode "grant_type=client_credentials" \
+            --data-urlencode "audience=${UPWIND_API_ENDPOINT}" \
+            --data-urlencode "client_id=${UPWIND_CLIENT_ID}" \
+            --data-urlencode "client_secret=${UPWIND_CLIENT_SECRET}")
           ACCESS_TOKEN=$(echo "$response" | jq -r '.access_token')  
 
         # Call Upwind API
