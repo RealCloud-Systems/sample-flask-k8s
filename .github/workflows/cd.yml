@@ -25,7 +25,7 @@ jobs:
       - name: Integrate with Upwind
         env:
           IMAGE: webapp
-          IMAGE_SHA: step.get_image_sha.outputs.sha
+          IMAGE_SHA: ${{ step.get_image_sha.outputs.sha }}
           UPWIND_API_ENDPOINT: https://api.upwind.io
           UPWIND_AUTH_ENDPOINT: https://auth.upwind.io
           UPWIND_ORGANIZATION_ID: ${{ secrets.UPWIND_ORGANIZATION_ID }}
