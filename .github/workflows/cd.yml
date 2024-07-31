@@ -29,12 +29,12 @@ jobs:
         run: |
         # Get Access Token
           response=$(curl -s --location "${UPWIND_AUTH_ENDPOINT}/oauth/token" \
-            --header "Content-Type: application/x-www-form-urlencoded" \
-            --data-urlencode "grant_type=client_credentials" \
-            --data-urlencode "audience=${UPWIND_API_ENDPOINT}" \
-            --data-urlencode "client_id=${UPWIND_CLIENT_ID}" \
-            --data-urlencode "client_secret=${UPWIND_CLIENT_SECRET}")
-          ACCESS_TOKEN=$(echo "$response" | jq -r '.access_token')  
+          --header "Content-Type: application/x-www-form-urlencoded" \
+          --data-urlencode "grant_type=client_credentials" \
+          --data-urlencode "audience=${UPWIND_API_ENDPOINT}" \
+          --data-urlencode "client_id=${UPWIND_CLIENT_ID}" \
+          --data-urlencode "client_secret=${UPWIND_CLIENT_SECRET}")
+        ACCESS_TOKEN=$(echo "$response" | jq -r '.access_token')  
 
         # Call Upwind API
           CURL_CMD="curl -fsSL \"${UPWIND_API_ENDPOINT}/v1/organizations/$UPWIND_ORGANIZATION_ID/events\" \
