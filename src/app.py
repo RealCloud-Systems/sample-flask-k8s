@@ -17,7 +17,7 @@ def get_cpu_percentage():
 
 @app.route("/")
 def hello_world():
-    return "<p>Testing Argo</p>"
+    return "<p>Testing Build Event Action</p>"
 
 @app.route("/details")
 def detail():
